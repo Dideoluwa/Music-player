@@ -1,12 +1,14 @@
 import React from 'react'
+import NavBar from '../components/NavBar'
 import SongList from '../components/SongList'
 
 function MainPage() {
-  return (
-    <div>
-        <SongList />
-    </div>
-  )
+    return (
+        <div>
+            <NavBar />
+            <SongList />
+        </div>
+    )
 }
 
 export default MainPage

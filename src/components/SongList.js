@@ -6,38 +6,47 @@ function SongList() {
     let [play, setPlay] = useState(false)
     let [isPlaying, setIsPlaying] = useState(null)
     let [active, setActive] = useState([])
-    // let [content , setContent] = useState([])
-    // let ctrl = !isPlaying ? <p>&#9658;</p> : <p>&#8214;</p>
     const audio = useRef(null);
     return (
-        <div>
+        <div className={styles.body}>
             {
                 List.map((list) => {
                     return (
-                        <div key={list.id}>
-                            <div
-                                onClick={() => {
-                                    const song = list.song;
-                                    setActive(list)
-                                    if (play === song) {
-                                        isPlaying ? setActive(null) : setActive(list)
-                                        isPlaying ? audio.current.pause() : audio.current.play();
-                                        setIsPlaying(!isPlaying);
-                                    } else {
-                                        if (audio.current) {
-                                            audio.current.pause();
-                                        }
-                                        setPlay(song);
-                                        setIsPlaying(true);
-                                        audio.current = new Audio(song);
-                                        audio.current.play();
+                        <div className={styles.content} key={list.id}
+                            onClick={() => {
+                                const song = list.song;
+                                setActive(list)
+                                if (play === song) {
+                                    isPlaying ? setActive(null) : setActive(list)
+                                    isPlaying ? audio.current.pause() : audio.current.play();
+                                    setIsPlaying(!isPlaying);
+                                } else {
+                                    if (audio.current) {
+                                        audio.current.pause();
                                     }
-                                }}>
-                                <div className={`${active === list ? styles.active : styles.notActive}`}></div>
+                                    setPlay(song);
+                                    setIsPlaying(true);
+                                    audio.current = new Audio(song);
+                                    audio.current.play();
+                                }
+                            }}>
+                            <div className={styles.body_content}>
+                                <div
+                                    className={styles.button}
+                                >
+                                    <div className={`${active === list ? styles.active : styles.notActive}`}></div>
+                                </div>
+                                <div className={styles.wrapper}>
+                                    <img src={list.image} alt={list.name} />
+                                </div>
                             </div>
-                            <h1>{list.name}</h1>
-                            <h3>{list.title}</h3>
-                            <img src={list.image} alt={list.name} />
+                            <div className={styles.title}>
+                                <h1>{list.name}</h1>
+                                <h3>{list.title}</h3>
+                            </div>
+                            <div className={styles.duration}>
+                                <h4>{list.duration}</h4>
+                            </div>
                         </div>
                     )
                 })
