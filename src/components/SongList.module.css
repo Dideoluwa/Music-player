@@ -1,0 +1,8 @@
+.active::before{
+    content: ' \2225';
+    font-size: 35px;
+}
+.notActive::before{
+    content: ' \25BA';
+    font-size: 35px;
+}
